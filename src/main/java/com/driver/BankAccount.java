@@ -102,6 +102,7 @@ public class BankAccount {
                   {
                       throw new Exception("Insufficient Balance");
                   }
+                  this.balance+=amount;//check;
     }
 
 }
