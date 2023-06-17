@@ -37,43 +37,45 @@ public class CurrentAccount extends BankAccount{
               boolean ans= check(tradeLicenseId);
               if(ans==false)
               {
-                //  ArrayList<ArrayList<String >> ss= new ArrayList<>();
+                 ArrayList<String> ss= new ArrayList<>();
                   String answer = tradeLicenseId;
-
-                boolean re=  per(answer,"");
-                if(re==false)
+                    int z=0;
+                  per(answer,"",ss);
+                  for(String s:ss)
+                  {
+                      boolean p =check(s);
+                      if(p==true)
+                      {
+                          this.tradeLicenseId=s;
+                         // System.out.println(s);
+                          z=1;
+                          break;
+                      }
+                  }
+                if(z==0)
                 {
                     throw new Exception("Valid License can not be generated");
                 }
 
               }
     }
-    public  boolean  per(String answer, String path )
+    public  void per(String answer, String path ,ArrayList<String > ss)
     {
         if(answer.length()==0) {
-            boolean ans = check(path);
-            if (ans) {
-                this.tradeLicenseId = path;
-                // System.out.println(path);
-                return true;
-
-            }
-
-            else {
-                return false;
-
-            }
+            ss.add(path);
+            return;
         }
+
             for(int i=0;i<answer.length();i++)
             {
                 char ch= answer.charAt(i);
                 String l= answer.substring(0,i);
                 String r=answer.substring(i+1);
                 String ns=l+r;
-                per(ns,path+ch);
+                per(ns,path+ch,ss);
 
             }
-            return false;
+
         }
 
     public static boolean check( String tradeLicenseId)
