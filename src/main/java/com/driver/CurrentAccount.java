@@ -40,21 +40,25 @@ public class CurrentAccount extends BankAccount{
                 //  ArrayList<ArrayList<String >> ss= new ArrayList<>();
                   String answer = tradeLicenseId;
 
-                  per(answer,"");
+                boolean re=  per(answer,"");
+                if(re==false)
+                {
+                    throw new Exception("Valid License can not be generated");
+                }
 
               }
     }
-    public  void per(String answer, String path )
+    public  boolean  per(String answer, String path )
     {
-        if(answer.length()==0)
-        {
-           boolean ans=check(path);
-            if(ans)
-            {
-                this.tradeLicenseId=path;
-               // System.out.println(path);
-                return;
+        if(answer.length()==0) {
+            boolean ans = check(path);
+            if (ans) {
+                this.tradeLicenseId = path;
+                // System.out.println(path);
+                return true;
+
             }
+        }
             for(int i=0;i<answer.length();i++)
             {
                 char ch= answer.charAt(i);
@@ -64,9 +68,9 @@ public class CurrentAccount extends BankAccount{
                 per(ns,path+ch);
 
             }
-
+            return false;
         }
-    }
+
     public static boolean check( String tradeLicenseId)
     {
         int n= tradeLicenseId.length();
