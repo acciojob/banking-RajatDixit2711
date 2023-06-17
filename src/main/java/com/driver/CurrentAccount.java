@@ -58,6 +58,11 @@ public class CurrentAccount extends BankAccount{
                 return true;
 
             }
+
+            else {
+                return false;
+
+            }
         }
             for(int i=0;i<answer.length();i++)
             {
